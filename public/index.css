@@ -895,6 +895,8 @@ body::before {
    * - overflow:visible avoids WebKit clipping grid/tall content inside .resume-shell
    * - print-color-adjust keeps sidebar, timeline, and chips from “disappearing”
    * - reset transforms so nothing sits off-canvas
+   * - Two-column grid must be set here: @media screen rules do not apply while printing,
+   *   so without this the shell collapses to one column (sidebar stacked above main).
    */
   @page {
     margin: 12mm;
@@ -923,13 +925,18 @@ body::before {
     max-width: none;
     overflow: visible !important;
     min-height: unset !important;
-    align-items: start;
+    display: grid !important;
+    grid-template-columns: 272px 1fr !important;
+    align-items: stretch;
+    width: 100%;
   }
 
-  .sidebar,
-  .edu-card,
-  .project-card,
-  .timeline::before {
+  .main {
+    min-width: 0;
+  }
+
+  .resume-shell,
+  .resume-shell * {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
