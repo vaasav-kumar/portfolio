@@ -972,6 +972,12 @@ body::before {
     break-inside: avoid;
   }
 
+  /* One card per row in PDF — wide print viewport still matched min-width: 640px */
+  .project-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem;
+  }
+
   .main-name {
     background: none !important;
     -webkit-background-clip: unset !important;
