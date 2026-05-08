@@ -311,13 +311,24 @@
         text-transform: uppercase;
         color: rgba(232, 238, 243, 0.45);
         margin: 0 0 0.75rem;
+        padding-top: 0;
+        border-top: none;
+      }
+      
+      .sidebar .skill-categories > .skill-category-group:first-child
+        .skill-category-heading {
         padding-top: 1.25rem;
         border-top: 1px solid rgba(255, 255, 255, 0.08);
       }
       
-      .sidebar-section-title:first-of-type {
-        border-top: none;
+      .sidebar .skill-categories > .skill-category-group:not(:first-child)
+        .skill-category-heading {
         padding-top: 0;
+      }
+      
+      .sidebar > .skill-categories + h2.sidebar-section-title {
+        padding-top: 1.25rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
       }
       
       .contact-list {
@@ -360,6 +371,36 @@
         height: 1.1em;
         opacity: 0.7;
         flex-shrink: 0;
+      }
+      
+      .skill-categories {
+        min-width: 0;
+      }
+      
+      .skill-category-group {
+        margin-bottom: 1rem;
+      }
+      
+      .skill-category-group:last-child {
+        margin-bottom: 0;
+      }
+      
+      .sidebar .skill-categories > .skill-category-group:last-child {
+        margin-bottom: 1rem;
+      }
+      
+      .skills-inline .skill-category-heading.section-title {
+        font-family: var(--font-sans);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 0.65rem;
+      }
+      
+      .skills-inline .skill-category-group + .skill-category-group {
+        margin-top: 0.35rem;
       }
       
       .pill-wrap {
@@ -806,6 +847,10 @@
         .sidebar .pill-wrap[data-desktop-only] {
           display: none;
         }
+      
+        .sidebar .skill-categories[data-skill-pills] {
+          display: none;
+        }
       }
       
       /* Projects */
@@ -921,8 +966,12 @@
           display: none !important;
         }
       
-        .sidebar .pill-wrap[data-desktop-only] {
+        .sidebar [data-skill-pills] .pill-wrap[data-desktop-only] {
           display: flex !important;
+        }
+      
+        .sidebar .skill-categories[data-skill-pills] {
+          display: block !important;
         }
       
         .project-card:hover,
@@ -1073,8 +1122,7 @@
           </li>
         </ul>
 
-        <h2 class="sidebar-section-title">Stack</h2>
-        <div class="pill-wrap" data-desktop-only data-skill-pills></div>
+        <div class="skill-categories" data-skill-pills></div>
 
         <h2 class="sidebar-section-title">Languages</h2>
         <div>
@@ -1176,11 +1224,7 @@
 
         <!-- Mobile: skills pills if sidebar skills hidden -->
         <section class="section skills-inline" aria-label="Technical skills">
-          <div class="section-head">
-            <h2 class="section-title">Stack</h2>
-            <span class="section-line" aria-hidden="true"></span>
-          </div>
-          <div class="pill-wrap" data-skill-pills></div>
+          <div class="skill-categories" data-skill-pills></div>
         </section>
 
         <section class="section" aria-labelledby="exp-title">

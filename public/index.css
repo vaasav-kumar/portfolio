@@ -271,6 +271,13 @@ body::before {
   margin: 0 0 1.75rem;
 }
 
+.sidebar-meta {
+  margin: -1.35rem 0 1.65rem;
+  text-align: center;
+  font-size: 0.88rem;
+  color: rgba(232, 238, 243, 0.7);
+}
+
 .sidebar-section-title {
   font-size: 0.7rem;
   font-weight: 600;
@@ -278,13 +285,25 @@ body::before {
   text-transform: uppercase;
   color: rgba(232, 238, 243, 0.45);
   margin: 0 0 0.75rem;
+  padding-top: 0;
+  border-top: none;
+}
+
+/* Sidebar skills: horizontal rules only above Frontend and Languages */
+.sidebar-stack-lang .skill-categories > .skill-category-group:first-child
+  .skill-category-heading {
   padding-top: 1.25rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.sidebar-section-title:first-of-type {
-  border-top: none;
+.sidebar-stack-lang .skill-categories > .skill-category-group:not(:first-child)
+  .skill-category-heading {
   padding-top: 0;
+}
+
+.sidebar-stack-lang > .skill-categories + h2.sidebar-section-title {
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .contact-list {
@@ -327,6 +346,36 @@ body::before {
   height: 1.1em;
   opacity: 0.7;
   flex-shrink: 0;
+}
+
+.skill-categories {
+  min-width: 0;
+}
+
+.skill-category-group {
+  margin-bottom: 1rem;
+}
+
+.skill-category-group:last-child {
+  margin-bottom: 0;
+}
+
+.sidebar-stack-lang .skill-categories > .skill-category-group:last-child {
+  margin-bottom: 1rem;
+}
+
+.skills-inline .skill-category-heading.section-title {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.65rem;
+}
+
+.skills-inline .skill-category-group + .skill-category-group {
+  margin-top: 0.35rem;
 }
 
 .pill-wrap {
@@ -653,6 +702,40 @@ body::before {
   min-width: 2rem;
 }
 
+/* Skills */
+.skill-grid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+@media (min-width: 640px) {
+  .skill-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.skill-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.05rem;
+  background: linear-gradient(165deg, #fff 0%, #fafbfd 100%);
+}
+
+.skill-card-title {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.skill-card-body {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
 /* Timeline experience */
 .timeline {
   position: relative;
@@ -746,6 +829,21 @@ body::before {
   color: var(--ink-soft);
 }
 
+.exp-bullets {
+  margin: 0.2rem 0 0;
+  padding-left: 1.05rem;
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+}
+
+.exp-bullets li {
+  margin: 0.42rem 0;
+}
+
+.exp-bullets li::marker {
+  color: rgba(194, 77, 94, 0.75);
+}
+
 /* Education card */
 .edu-card {
   padding: 1.15rem 1.3rem;
@@ -782,6 +880,10 @@ body::before {
   margin: 0;
   font-size: 0.94rem;
   color: var(--ink-soft);
+}
+
+.edu-body:empty {
+  display: none;
 }
 
 /* Skills in main (duplicate for print / optional) — hidden on desktop if duplicated in sidebar only */
@@ -957,7 +1059,7 @@ body::before {
     display: none !important;
   }
 
-  .sidebar .pill-wrap[data-desktop-only] {
+  .sidebar [data-skill-pills] .pill-wrap[data-desktop-only] {
     display: flex !important;
   }
 
@@ -969,6 +1071,10 @@ body::before {
 
   .edu-card,
   .project-card {
+    break-inside: avoid;
+  }
+
+  .skill-card {
     break-inside: avoid;
   }
 
